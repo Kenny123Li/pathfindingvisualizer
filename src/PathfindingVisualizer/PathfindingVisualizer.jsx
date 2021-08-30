@@ -95,7 +95,9 @@ export default class PathfindingVisualizer extends React.Component{
             setTimeout(()=> {
                 const node = visitedNodesInOrder[i];
                 const element = document.getElementById(`node-${node.row}-${node.col}`);
-                element.classList.add("node-visited");
+                if(!element.classList.contains('finish_Node') && !element.classList.contains('start_Node')){
+                    element.classList.add("node-visited");
+                }
             }, i*5)
         }
     }
@@ -105,7 +107,10 @@ export default class PathfindingVisualizer extends React.Component{
             setTimeout(()=> {
                 const node = shortestPath[i];
                 const element = document.getElementById(`node-${node.row}-${node.col}`);
-                element.classList.add("node-shortest-path");
+
+                if(!element.classList.contains('finish_Node') && !element.classList.contains('start_Node')){
+                    element.classList.add("node-shortest-path");
+                }
 
             }, i*20)
         }
@@ -165,13 +170,16 @@ export default class PathfindingVisualizer extends React.Component{
         return (
             <div>
                 <div>
-                    <button onClick={() => this.reset()}>Reset</button>
-                    <button onClick={() => this.clickwalls()}>Walls</button>
-                    <button onClick={() => this.clickstart()}>Start Point(s)</button>
-                    <button onClick={() => this.clickend()}>End Point</button>
+                    <button class = 'myButton' onClick={() => this.reset()}>Reset</button>
+                    <button class = 'myButton' onClick={() => this.clickwalls()}>Walls</button>
+                    <button class = 'myButton' onClick={() => this.clickstart()}>Start Point(s)</button>
+                    <button class = 'myButton' onClick={() => this.clickend()}>End Point</button>
                 </div>
-                <div>
-                <button onClick={() => this.dijkstra()}>Visualize Dijkstra's Algorithm</button>
+                <div class="dropdown">
+                    <button class="dropbtn">Algorithms</button>
+                    <div class="dropdown-content">
+                        <button onClick={() => this.dijkstra()}>Visualize Dijkstra's Algorithm</button>
+                    </div>
                 </div>
                 <div className = "grid">
                     {nodes.map((row, row_index) => {
