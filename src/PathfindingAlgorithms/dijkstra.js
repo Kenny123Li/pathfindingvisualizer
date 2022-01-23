@@ -75,3 +75,40 @@ export function getShortestPath(finishNode){
     return shortestPath;
 }
   
+
+
+export function astar(nodes, startNode, finishNode){
+    const visitedNodes = [];
+    const openList = [];
+    const closedList = [];
+
+    openList.push(startNode);
+    const grid = getAllNodes(nodes);
+
+    while (openList.length!==0){
+
+    }
+
+    return visitedNodes;
+}
+
+function findSucc(node, grid){
+    const successors = [];
+
+    const {row, col} = node;
+
+    //upper left
+    if(row>0 && col>0) successors.push(grid[row-1][col-1]);
+    //upper middle
+    if(row>0) successors.push(grid[row-1][col]);
+    //upper right
+    if(row<20 && col>0) successors.push(grid[row+1][col-1]);
+    if(row>0 && col>0) successors.push(grid[row-1][col-1]);
+    if(row>0 && col>0) successors.push(grid[row-1][col-1]);
+    if(row>0 && col>0) successors.push(grid[row-1][col-1]);
+    if(row>0 && col>0) successors.push(grid[row-1][col-1]);
+    //lower right
+    if(row<20 && col<50) successors.push(grid[row+1][col+1]);
+
+    return successors;
+}
